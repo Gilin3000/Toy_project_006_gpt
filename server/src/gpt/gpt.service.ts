@@ -19,11 +19,6 @@ export class GptService {
   }
 
   async generateText() {
-    const message = [
-      { role: 'system', content: 'You are a helpful assistant.' },
-      { role: 'user', content: 'ChatGPT에 대해 설명해줘.' },
-    ];
-
     const result = await this.openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
       messages: [
