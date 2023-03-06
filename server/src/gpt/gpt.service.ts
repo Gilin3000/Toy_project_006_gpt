@@ -27,7 +27,7 @@ export class GptService {
     });
     this.prompt.push({
       role: 'user',
-      content: `I want to generate an image of a ${text}`,
+      content: `Imagine ${text} and describe it in detail.`,
     });
     const result_descript = await this.openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
@@ -48,10 +48,6 @@ export class GptService {
       messages: this.prompt,
     });
 
-    // return result_nouns.data.choices[0].message.content;
-    const picture = await this.generatePicture(
-      result_nouns.data.choices[0].message.content,
-    );
-    return picture;
+    return result_nouns.data.choices[0].message.content;
   }
 }
