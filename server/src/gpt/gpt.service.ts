@@ -48,6 +48,10 @@ export class GptService {
       messages: this.prompt,
     });
 
-    return result_nouns.data.choices[0].message.content;
+    return await this.generatePicture(
+      result_nouns.data.choices[0].message.content,
+    );
+
+    // return result_nouns.data.choices[0].message.content;
   }
 }
