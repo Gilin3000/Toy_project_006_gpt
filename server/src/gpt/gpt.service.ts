@@ -10,11 +10,33 @@ export class GptService {
 
   async generatePicture() {
     const response = await this.openai.createImage({
-      prompt: 'unicorn, rainbow, and a horse',
+      prompt: 'a white siamese cat',
       n: 1,
       size: '1024x1024',
     });
     const image_url = response.data.data[0].url;
     return image_url;
+  }
+
+  async generateText() {
+    const message = [
+      { role: 'system', content: 'You are a helpful assistant.' },
+      { role: 'user', content: 'ChatGPT에 대해 설명해줘.' },
+    ];
+
+    const result = await this.openai.createChatCompletion({
+      model: 'gpt-3.5-turbo',
+      messages: [
+        {
+          role: 'system',
+          content: 'You are a helpful assistant.',
+        },
+        {
+          role: 'user',
+          content: 'ChatGPT에 대해 설명해줘.',
+        },
+      ],
+    });
+    return result.data.choices[0].message.content;
   }
 }
