@@ -5,6 +5,11 @@ import { GptService } from 'src/gpt/gpt.service';
 export class FeedService {
   constructor(private readonly gptService: GptService) {}
 
+  async simpleTalk(word: string) {
+    const result = await this.gptService.simpleTalk(word);
+    return result;
+  }
+
   async generatePicture(word: string) {
     const result = await this.gptService.generateText(word);
     return result;

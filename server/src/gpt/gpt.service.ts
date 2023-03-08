@@ -9,6 +9,23 @@ export class GptService {
   openai = new OpenAIApi(this.configuration);
   prompt = Array<ChatCompletionRequestMessage>();
 
+  async simpleTalk(text: string) {
+    this.prompt.push({
+      role: 'system',
+      content:
+        'You are a helpful assistant for organizing prompt for generating images',
+    });
+    this.prompt.push({
+      role: 'user',
+      content: `${text}에 대해 자세히 설명해줘.`,
+    });
+    const result_descript = await this.openai.createChatCompletion({
+      model: 'gpt-3.5-turbo',
+      messages: this.prompt,
+    });
+    return result_descript.data.choices[0].message.content;
+  }
+
   async generatePicture(text: string) {
     const response = await this.openai.createImage({
       prompt: text,
