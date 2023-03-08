@@ -1,1 +1,1 @@
-# Toy_project_006_Ai_picture
+# Toy_project_006_gpt
